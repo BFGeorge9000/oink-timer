@@ -6,7 +6,8 @@ class Notification < ActiveRecord::Base
     TwitterNotification
     EmailNotification
   )
-
+  
+  MESSAGE = "Your bacon is ready!"
 
   validates_presence_of :destination, :type
   validates_uniqueness_of :type, :scope => :timer_id

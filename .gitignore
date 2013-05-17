@@ -4,8 +4,8 @@ log
 tmp
 public/system
 config/database.yml
-config/last_fm.yml
-config/youtube.yml
+config/twilio.yml
+config/twitter.yml
 .rvmrc
 .sass-cache
 .powrc
