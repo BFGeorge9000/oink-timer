@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517151957) do
+ActiveRecord::Schema.define(:version => 20130517210900) do
+
+  create_table "notifications", :force => true do |t|
+    t.string   "type"
+    t.string   "destination"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "timer_id"
+  end
+
+  add_index "notifications", ["timer_id"], :name => "index_notifications_on_timer_id"
 
   create_table "timers", :force => true do |t|
     t.string   "name"

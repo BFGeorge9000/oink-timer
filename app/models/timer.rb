@@ -11,6 +11,9 @@ class Timer < ActiveRecord::Base
   scope :active, where("#{REMAINING_TIME_FUNCTION} > ?", Time.now)
   scope :remaining_ascending, order("#{REMAINING_TIME_FUNCTION} ASC")
 
+  has_many :notifications, :dependent => :destroy
+  accepts_nested_attributes_for :notifications
+
   def self.default_duration
     MIN_DURATION + ((MAX_DURATION - MIN_DURATION) / 2.to_f)
   end
