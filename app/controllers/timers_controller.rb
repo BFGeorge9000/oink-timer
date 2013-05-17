@@ -1,7 +1,7 @@
 class TimersController < ApplicationController
 
   def index
-    @timers = Timer.all
+    @timers = Timer.active
 
     respond_to do |format|
       format.html # index.html.erb
