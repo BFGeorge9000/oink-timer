@@ -2,7 +2,7 @@
 
 %ul.small-block-grid-4
   - @timers.each do |timer|
-    %li
+    %li.timer-block
       %h4= timer.name
       %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
       %span
@@ -24,6 +24,10 @@
 
           if(original > 0){
             $(this).val(original - 1).trigger('change');
+          } else {
+            $(this).parents('li:first').fadeOut('slow', function(){
+              $(this).remove();
+            });
           }
         });
       }, 1000);
