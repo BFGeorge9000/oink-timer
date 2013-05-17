@@ -1,11 +1,10 @@
 class Notification < ActiveRecord::Base
   attr_accessible :destination, :type
 
-  VALID_TYPES = %w(
-    SmsNotification
-    TwitterNotification
-    EmailNotification
-  )
+  VALID_TYPES = %w( SmsNotification )
+  #  TwitterNotification
+  #  EmailNotification
+  #)
   
   MESSAGE = "Your bacon is ready!"
 
@@ -13,4 +12,6 @@ class Notification < ActiveRecord::Base
   validates_uniqueness_of :type, :scope => :timer_id
   validates_inclusion_of :type, :in => VALID_TYPES
   belongs_to :timer
+
+  after_create :deliver
 end

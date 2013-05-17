@@ -12,7 +12,7 @@ class TimersController < ApplicationController
   def new
     @timer = Timer.new
     Notification::VALID_TYPES.each do |type|
-      @timer.notifications.build(:type => type)
+      @timer.send(:"build_#{type.underscore}")
     end
     
     respond_to do |format|

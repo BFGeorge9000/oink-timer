@@ -13,7 +13,11 @@ class Timer < ActiveRecord::Base
   accepts_nested_attributes_for :notifications,
     :reject_if => proc { |attributes| attributes['destination'].blank? }
 
-  attr_accessible :duration, :name, :notifications_attributes
+  has_one :sms_notification
+  accepts_nested_attributes_for :sms_notification,
+    :reject_if => proc { |attributes| attributes['destination'].blank? }
+
+  attr_accessible :duration, :name, :sms_notification_attributes
 
   def self.default_duration
     MIN_DURATION + ((MAX_DURATION - MIN_DURATION) / 2.to_f)
