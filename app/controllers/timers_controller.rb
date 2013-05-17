@@ -1,7 +1,7 @@
 class TimersController < ApplicationController
 
   def index
-    @timers = Timer.active
+    @timers = Timer.active.remaining_ascending
 
     respond_to do |format|
       format.html # index.html.erb
