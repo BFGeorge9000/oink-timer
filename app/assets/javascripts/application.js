@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.knob
+//= require jquery-ui.min
 //= require_tree .
 
 $(document).foundation();

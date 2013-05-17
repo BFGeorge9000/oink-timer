@@ -1,4 +1,5 @@
 = simple_form_for @timer do |f|
   = f.input :name
-  = f.input :duration
+  .duration-slider
+  = f.input :duration, :as => :hidden
   = f.button :submit
