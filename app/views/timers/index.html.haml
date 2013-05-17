@@ -1,4 +1,32 @@
-.timer
+= link_to "Create a timer", new_timer_path
+
+%ul.small-block-grid-4
   - @timers.each do |timer|
-    .lead= timer.name
+    %li
+      = timer.name
+      %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
+      %span
+        [SMS]
+        [EMail]
+        [Tweet]
+
+- content_for :script do
+  :javascript
+    $(document).ready(function(){
+      $('.knob-timer').knob({
+        readOnly : true,
+        max      : #{Timer::MAX_DURATION}
+      });
+
+      setInterval(function(){
+        $('.knob-timer').each(function(){
+          var original = $(this).val();
+
+          if(original > 0){
+            $(this).val(original - 1).trigger('change');
+          }
+        });
+      }, 1000);
+
+    });
   
