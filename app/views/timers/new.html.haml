@@ -1,5 +1,18 @@
 = simple_form_for @timer do |f|
   = f.input :name
   .duration-slider
-  = f.input :duration, :as => :hidden
+  = f.input :duration, :as => :hidden, :input_html => {:value => Timer.default_duration}
   = f.button :submit
+
+- content_for :script do
+  :javascript
+    $(document).ready(function(){
+      $('.duration-slider').slider({
+        max    : #{Timer::MAX_DURATION},
+        min    : #{Timer::MIN_DURATION},
+        value  : $('#timer_duration').val(),
+        change : function(event, ui){
+          $('#timer_duration').val(ui.value);
+        }
+      });
+    });
