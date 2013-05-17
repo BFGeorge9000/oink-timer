@@ -2,6 +2,11 @@
   = f.input :name
   .duration-slider
   = f.input :duration, :as => :hidden, :input_html => {:value => Timer.default_duration}
+
+  = f.simple_fields_for :notifications do |notification_form|
+    = notification_form.input :type, :as => :hidden
+    = notification_form.input :destination, :required => false
+
   = f.button :submit
 
 - content_for :script do

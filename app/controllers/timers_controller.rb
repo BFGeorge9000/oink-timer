@@ -11,7 +11,10 @@ class TimersController < ApplicationController
 
   def new
     @timer = Timer.new
-
+    Notification::VALID_TYPES.each do |type|
+      @timer.notifications.build(:type => type)
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @timer }

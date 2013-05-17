@@ -1,6 +1,4 @@
 class Timer < ActiveRecord::Base
-  attr_accessible :duration, :name
-
   MAX_DURATION = 30.minutes
   MIN_DURATION = 15.minutes
   REMAINING_TIME_FUNCTION = "(created_at + (duration * interval '1 second'))"
@@ -12,7 +10,10 @@ class Timer < ActiveRecord::Base
   scope :remaining_ascending, order("#{REMAINING_TIME_FUNCTION} ASC")
 
   has_many :notifications, :dependent => :destroy
-  accepts_nested_attributes_for :notifications
+  accepts_nested_attributes_for :notifications,
+    :reject_if => proc { |attributes| attributes['destination'].blank? }
+
+  attr_accessible :duration, :name, :notifications_attributes
 
   def self.default_duration
     MIN_DURATION + ((MAX_DURATION - MIN_DURATION) / 2.to_f)
