@@ -1,10 +1,12 @@
 class Notification < ActiveRecord::Base
   attr_accessible :destination, :type
 
-  VALID_TYPES = %w( SmsNotification )
-  #  TwitterNotification
+  VALID_TYPES = %w( 
+    SmsNotification
+    TwitterNotification
+  )
   #  EmailNotification
-  #)
+  
   
   MESSAGE = "Your bacon is ready!"
 

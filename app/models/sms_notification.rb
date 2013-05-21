@@ -5,7 +5,6 @@ class SmsNotification < Notification
   def destination=(destination)
     self[:destination] = destination.gsub(/\D/, '')
   end
-
   
   def deliver
     Rails.logger.debug "... Sending SMS to #{destination}"
