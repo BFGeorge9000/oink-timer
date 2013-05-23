@@ -1,0 +1,21 @@
+%div.row
+  %div{:style => "text-align:center"}
+    = image_tag "oinktimer.jpg", :width => 300
+    %h2 Welcome to OinkTimer!
+    %p The only web application that helps you make bacon... that we're aware of.
+  %p
+    %strong Follow the instructions below to get started:
+    %ul.disc
+      %li Select an item* you want bacon-wrapped (or decide how much regular bacon you want)
+      %li Scan the QR Code with your smart phone
+      %li Enter your name, give your bacon-order a name &  use the slider to set how chewy/crispy you want it
+      %li Fill in the Destination fields for your preferred method(s) of contact, and submit!
+
+  %p{:style => "text-align:justify"}
+    That's it!  When we receive your item-to-be-wrapped, we'll wrap it and bake it as oven-space becomes available.  Your items will be baked at 425 degrees for between 12 to 20 minutes, depending on where you set the crispiness slider.  You should receive your notice(s) about the same time your order completes baking.  Stop by the kitchen with a plate or bowl, ready to collect your delicious bacon!
+
+  %p
+    %em * Precooked, edible items only, please.
+
+  %p
+    %strong= link_to "Create a Bacon Order!", new_timer_path, :class => "large round button"

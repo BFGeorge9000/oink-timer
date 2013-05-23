@@ -35,4 +35,8 @@ class TimersController < ApplicationController
     end
   end
 
+  def welcome
+    render action: "welcome"
+  end
+
 end
