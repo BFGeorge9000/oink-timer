@@ -1,11 +1,19 @@
 = simple_form_for @timer do |f|
   = f.input :name
   .duration-slider
+  
   = f.input :duration, :as => :hidden, :input_html => {:value => Timer.default_duration}
 
-  - Notification::VALID_TYPES.each do |type|
-    = f.simple_fields_for :"#{type.underscore}" do |notification_form|
-      = notification_form.input :destination, :required => false
+  .container
+    .left{:style => "float:left;text-align:left"} Chewy
+    .right{:style => "float:right;text-align:right"} Crispy
+    .clearn{:style => "float:clear"}
+  
+  %hr
+  %div.clearfix
+    - Notification::VALID_TYPES.each do |type|
+      = f.simple_fields_for :"#{type.underscore}" do |notification_form|
+        = notification_form.input :destination, :required => false, :label => "#{type.underscore.gsub("_", " ").titlecase} Destination"
 
   = f.button :submit
 
