@@ -1,4 +1,4 @@
-= link_to "Create a timer", new_timer_path
+= link_to "Create a new timer", new_timer_path, :class => "button success"
 
 %ul.small-block-grid-4
   - @timers.each do |timer|
@@ -6,9 +6,10 @@
       %h4= timer.name
       %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
       %span
-        [SMS]
-        [EMail]
-        [Tweet]
+        - if timer.sms_notification.present?
+          [SMS]
+        - if timer.twitter_notification.present?
+          [Tweet]
 
 - content_for :script do
   :javascript
