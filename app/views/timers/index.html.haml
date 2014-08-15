@@ -1,6 +1,11 @@
 .full-white
-  %h2 Current Bacon Orders
-  = link_to "Create a new timer", new_timer_path, :class => "button large round success"
+  .left{:style => "float:left;text-align:left"}
+    %h2 Current Bacon Orders
+  .right{:style => "float:right;text-align:right"}
+    = link_to "Create a new timer", new_timer_path, :class => "button large round success"
+  .clear{:style => "float:clear"}
+  %hr
+
 
   %ul.small-block-grid-4
     - @timers.each do |timer|
