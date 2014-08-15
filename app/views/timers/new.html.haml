@@ -1,6 +1,8 @@
 .row
   .columns.small-12
     %h4 Create your Oink Timer!
+    %hr
+    %h5 Please complete the following fields to create your order:
     = simple_form_for @timer do |f|
       = f.input :name, :label => "Your Name"
       = f.input :description, :label => "A brief description of what we're wrapping in bacon (this helps keep your orders organized!)"
@@ -18,14 +20,15 @@
       %div.clearfix
         %p
         %h5 Choose a(n optional) method of notification:
-        If you'd like to hang out near the break room, you're more than welcome to do that, and we'll holler at you when your bacon is ready!  If time allows and you're lucky, we might even have a robot deliver your order TO you!
+        If you'd like to hang out near the break room, you're more than welcome to do that, and we'll holler at you when your bacon is ready!  If time allows, we might even have a robot deliver your order TO you!
         %p
         If you'd like to receive an automated alert when your bacon is ready, simply fill out one of the options below with the relevant information.
         %p
         - Notification::VALID_TYPES.each do |type|
           = f.simple_fields_for :"#{type.underscore}" do |notification_form|
             = notification_form.input :destination, :required => false, :label => type.constantize.label, :placeholder => type.constantize.placeholder
-      = f.button :submit, :class => "success"
+      %p
+      = f.button :submit, "Submit Order!", :class => "large round success"
 
 - content_for :script do
   :javascript

@@ -1,21 +1,23 @@
-= link_to "Create a new timer", new_timer_path, :class => "button success"
+.full-white
+  %h2 Current Bacon Orders
+  = link_to "Create a new timer", new_timer_path, :class => "button large round success"
 
-%ul.small-block-grid-4
-  - @timers.each do |timer|
-    %li.timer-block
-      %h4= timer.name
-      %h5
-        - if timer.description.length > 40
-          = "#{timer.description[0..40]}..."
-        - else
-          = timer.description
-      %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
-      %br
-      %span
-        - if timer.sms_notification.present?
-          [SMS]
-        - if timer.twitter_notification.present?
-          [Tweet]
+  %ul.small-block-grid-4
+    - @timers.each do |timer|
+      %li.timer-block
+        %h4= timer.name
+        %h5
+          - if timer.description.length > 40
+            = "#{timer.description[0..40]}..."
+          - else
+            = timer.description
+        %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
+        %br
+        %span
+          - if timer.sms_notification.present?
+            [SMS]
+          - if timer.twitter_notification.present?
+            [Tweet]
 
 - content_for :script do
   :javascript
