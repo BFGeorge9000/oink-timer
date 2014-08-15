@@ -12,7 +12,7 @@ class TwitterNotification < Notification
 
   def deliver
     Rails.logger.debug "... Sending Tweet to #{destination}"
-    Twitter.update("@#{destination} #{MESSAGE} #BACON #automation")
+    Twitter.update("@#{destination} #{MESSAGE} #BACON #BaaS")
   end
   handle_asynchronously :deliver,
     :run_at => Proc.new { |notification| notification.timer.duration.seconds.from_now }
