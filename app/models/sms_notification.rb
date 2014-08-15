@@ -6,6 +6,14 @@ class SmsNotification < Notification
     self[:destination] = destination.gsub(/\D/, '')
   end
   
+  def self.label
+    "Phone Number for SMS Notification"
+  end
+
+  def self.placeholder
+    "3175551234"
+  end
+
   def deliver
     Rails.logger.debug "... Sending SMS to #{destination}"
     TwilioAccount.sms.messages.create({
@@ -15,5 +23,4 @@ class SmsNotification < Notification
   end
   handle_asynchronously :deliver,
     :run_at => Proc.new { |notification| notification.timer.duration.seconds.from_now }
-
 end

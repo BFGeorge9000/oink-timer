@@ -1,21 +1,31 @@
-= simple_form_for @timer do |f|
-  = f.input :name
-  .duration-slider
-  
-  = f.input :duration, :as => :hidden, :input_html => {:value => Timer.default_duration}
+.row
+  .four.columns
+    %h4 Create your Oink Timer!
+    = simple_form_for @timer do |f|
+      = f.input :name, :label => "Your Name"
+      = f.input :description, :label => "A brief description of what we're wrapping in bacon (this helps keep your orders organized!)"
 
-  .container
-    .left{:style => "float:left;text-align:left"} Chewy
-    .right{:style => "float:right;text-align:right"} Crispy
-    .clearn{:style => "float:clear"}
-  
-  %hr
-  %div.clearfix
-    - Notification::VALID_TYPES.each do |type|
-      = f.simple_fields_for :"#{type.underscore}" do |notification_form|
-        = notification_form.input :destination, :required => false, :label => "#{type.underscore.gsub("_", " ").titlecase} Destination"
+      .panel{:style => "padding-bottom:2.5em"}
+        = f.label "How would you like your bacon prepared?"
+        .duration-slider
+        = f.input :duration, :as => :hidden, :input_html => {:value => Timer.default_duration}
 
-  = f.button :submit
+        .container
+          .left{:style => "float:left;text-align:left"} Chewy
+          .right{:style => "float:right;text-align:right"} Crispy
+          .clearn{:style => "float:clear"}
+      
+      %div.clearfix
+        %p
+        %h5 Choose a(n optional) method of notification:
+        If you'd like to hang out near the break room, you're more than welcome to do that, and we'll holler at you when your bacon is ready!  If time allows and you're lucky, we might even have a robot deliver your order TO you!
+        %p
+        If you'd like to receive an automated alert when your bacon is ready, simply fill out one of the options below with the relevant information.
+        %p
+        - Notification::VALID_TYPES.each do |type|
+          = f.simple_fields_for :"#{type.underscore}" do |notification_form|
+            = notification_form.input :destination, :required => false, :label => type.constantize.label, :placeholder => type.constantize.placeholder
+      = f.button :submit, :class => "success"
 
 - content_for :script do
   :javascript

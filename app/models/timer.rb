@@ -1,4 +1,6 @@
 class Timer < ActiveRecord::Base
+  TEMPERATURE = "350"
+
   MAX_DURATION = 30.minutes
   MIN_DURATION = 15.minutes
   REMAINING_TIME_FUNCTION = "(created_at + (duration * interval '1 second'))"
@@ -21,7 +23,7 @@ class Timer < ActiveRecord::Base
   accepts_nested_attributes_for :twitter_notification,
     :reject_if => proc { |attributes| attributes['destination'].blank? }
 
-  attr_accessible :duration, :name, :sms_notification_attributes, :twitter_notification_attributes
+  attr_accessible :duration, :name, :description, :sms_notification_attributes, :twitter_notification_attributes
 
   def self.default_duration
     MIN_DURATION + ((MAX_DURATION - MIN_DURATION) / 2.to_f)

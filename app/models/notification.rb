@@ -16,4 +16,13 @@ class Notification < ActiveRecord::Base
   belongs_to :timer
 
   after_create :deliver
+
+  def self.label
+    # Defined in subclasses
+  end
+
+  def self.placeholder
+    # Defined in subclasses
+  end
+
 end
