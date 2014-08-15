@@ -4,7 +4,13 @@
   - @timers.each do |timer|
     %li.timer-block
       %h4= timer.name
+      %h5
+        - if timer.description.length > 40
+          = "#{timer.description[0..40]}..."
+        - else
+          = timer.description
       %input{:value => "#{timer.remaining_duration}", :class => 'knob-timer'}
+      %br
       %span
         - if timer.sms_notification.present?
           [SMS]

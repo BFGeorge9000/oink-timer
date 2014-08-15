@@ -6,7 +6,7 @@ class Timer < ActiveRecord::Base
   REMAINING_TIME_FUNCTION = "(created_at + (duration * interval '1 second'))"
 
   validates_numericality_of :duration, :greater_than => 0, :less_than_or_equal_to => MAX_DURATION
-  validates_presence_of :name, :duration
+  validates_presence_of :name, :description, :duration
 
   scope :active, where("#{REMAINING_TIME_FUNCTION} > ?", Time.now)
   scope :remaining_ascending, order("#{REMAINING_TIME_FUNCTION} ASC")
