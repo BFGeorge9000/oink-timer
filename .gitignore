@@ -6,6 +6,7 @@ public/system
 config/database.yml
 config/twilio.yml
 config/twitter.yml
+config/google_analytics.yml
 .rvmrc
 .sass-cache
 .powrc
